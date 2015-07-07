@@ -1,0 +1,80 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.2.3'
+        classpath 'com.github.dcendents:android-maven-plugin:1.2'
+        // replace with the current version of the android-apt plugin
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+        classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.6'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'groovyx.grooid.groovy-android'
+
+android {
+
+    compileSdkVersion 21
+    buildToolsVersion "21"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        debug {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+}
+
+androidGroovy {
+    options {
+        groovyOptions.fork = false
+    }
+}
+
+repositories {
+    jcenter()
+    mavenLocal()
+    maven { url = 'https://oss.jfrog.org/oss-snapshot-local/' }
+    maven { url = 'http://repository.codehaus.org' }
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+
+    // Android tools
+    compile 'com.android.support:support-v4:21.0.0'
+    // Groovy version
+    compile 'org.codehaus.groovy:groovy:2.4.3:grooid'
+    // Groovy Json handling
+    compile ('org.codehaus.groovy:groovy-json:2.4.0-rc-1') {
+        transitive = false
+    }
+
+    // Rest handling
+    compile 'com.squareup.retrofit:retrofit:1.7.1'
+    // Getting rid of boiler plate code
+    compile 'com.arasthel:swissknife:1.1.4'
+    // Imaging
+    compile 'com.squareup.picasso:picasso:2.3.2'
+
+    // SmartConfig
+//  compile fileTree(dir: 'libs', include: ['*.jar'])
+//  compile 'com.android.support:appcompat-v7:22.1.1'
+//  compile project(':library')
+    compile 'com.github.batuypn:SmartConfigLibrary:v1.0.6'
+
+}
