@@ -9,17 +9,16 @@ import android.widget.Toast
 import com.arasthel.swissknife.annotations.OnBackground
 import groovy.transform.CompileStatic
 
-import batuypn.android.smartconfiglibrary.SmartConfigLibrary_
-import batuypn.android.smartconfiglibrary.SmartConfigLibrary_.*
+import batuypn.android.smartconfiglibrary.*
 
-// @CompileStatic
-class SmartConfigActivity extends Activity implements SmartConfigLibrary_.Callback {
+@CompileStatic
+class SmartConfigActivity extends Activity implements SmartConfigLibrary.Callback {
     private SmartConfigLibrary_ smartConfigLibrary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
 
         smartConfigLibrary = SmartConfigLibrary_.getInstance_(this);
         smartConfigLibrary.registerListener(this);

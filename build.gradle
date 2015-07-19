@@ -41,7 +41,14 @@ android {
 
 androidGroovy {
     options {
-        groovyOptions.fork = false
+        groovyOptions.with {
+            configurationScript = file('groovy.config')
+            encoding = 'UTF-8'
+            forkOptions.jvmArgs = ['-noverify']
+        }
+
+        sourceCompatibility = '1.7'
+        targetCompatibility = '1.7'
     }
 }
 
@@ -78,3 +85,8 @@ dependencies {
     compile 'com.github.batuypn:SmartConfigLibrary:v1.0.6'
 
 }
+
+task showMeCache << {
+  configurations.compile.each { println it }
+}
+
